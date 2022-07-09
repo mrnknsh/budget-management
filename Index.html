@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>accountinGG</title>
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="editor/editor.css">
+    <script src="https://kit.fontawesome.com/18b24449ee.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+</head>
+<body>
+<div id="authorizationPage" style="height: 100vh">
+    <h1>accountinGG</h1>
+    <p class="greeting">Welcome to accountinGG! You trust us your budget, and we help you increase it.</p>
+    <div class="authorization">
+        <input type="radio" id="singInCheck" name="choice" checked>
+        <input type="radio" id="registrationCheck" name="choice">
+        <div class="authorization-choice">
+            <label for="singInCheck" id="singInLabel">Sign in</label>
+            <label for="registrationCheck" id="registrationLabel">Registration</label>
+        </div>
+        <div class="singInUnit">
+            <label for="singInEmail">Email:</label>
+            <br>
+            <input type="email" id="singInEmail" placeholder="Enter your email" class="email_pass">
+            <br>
+            <label for="singInPassword">Password:</label>
+            <input type="password" id="singInPassword" placeholder="Enter password" class="email_pass">
+            <button class="showPass" id="showPassSingIn"><img src="img/showPass.png" style="width: 30px;"></button>
+            <button class="hidePass" id="hidePassSingIn"><img src="img/hidePass.png" style="width: 30px;"></button>
+            <div class="invalidData" id="invalidDataOfSignIn">*Invalid email or password</div>
+        </div>
+        <input type="button" value="Sign in" id="btnSingIn">
+        <div class="registrationUnit">
+            <label for="registrationEmail">Email:</label>
+            <br>
+            <input type="text" id="registrationEmail" placeholder="Enter your email" class="email_pass">
+            <br>
+            <label for="registrationPassword1">Password:</label>
+            <br>
+            <input type="password" id="registrationPassword1" placeholder="Enter password" class="email_pass">
+            <button class="showPass" id="showPassRegistration1"><img src="img/showPass.png" style="width: 30px;">
+            </button>
+            <button class="hidePass" id="hidePassRegistration1"><img src="img/hidePass.png" style="width: 30px;">
+            </button>
+            <br>
+            <label for="registrationPassword2">Confirm password:</label>
+            <br>
+            <input type="password" id="registrationPassword2" placeholder="Enter password" class="email_pass">
+            <button class="showPass" id="showPassRegistration2"><img src="img/showPass.png" style="width: 30px;">
+            </button>
+            <button class="hidePass" id="hidePassRegistration2"><img src="img/hidePass.png" style="width: 30px;">
+            </button>
+            <div class="invalidData" id="invalidDataOfReg">*This profile already exist</div>
+        </div>
+        <input type="button" value="Register" id="btnRegistration">
+    </div>
+    <div class="regAnswer" id="goodRegistration">
+        <p>Your profile has been successfully created</p>
+    </div>
+</div>
+
+<div id="menu">
+    <input type="checkbox" name="check" id="ch" style="display: none">
+    <label for="ch" class="burger"><i class="fas fa-ellipsis-v"></i></label>
+    <ul class="menuItems">
+        <li id="wallets"><a href="#walletsPage" id="fieldMenu">Wallets</a></li>
+        <li id="expense"><a href="#expensesPage" id="fieldExpenses">Expenses</a></li>
+        <!--        <li><a href="#notesPage" id="fieldNotes">Notes</a></li>-->
+        <li><a href="#analyticsPage" id="fieldAnalytics">Analytics</a></li>
+        <li><a href="#authorizationPage" id="fieldSignOut">Sign out</a></li>
+    </ul>
+</div>
+
+<div id="walletsPage" style="background-color: #ffffff">
+    <h2>Wallets</h2>
+    <div class="counter">
+        <div class="wrapperTotalIncome"><p class="currencyOfTotalIncome">USD</p><input type="number" maxlength=11
+                                                                                       id="totalIncomeUSD" readonly>
+        </div>
+        <div class="wrapperTotalIncome"><p class="currencyOfTotalIncome">BYN</p><input type="number" maxlength=11"
+                                                                                       id="totalIncomeBYN" readonly>
+        </div>
+        <div class="wrapperTotalIncome"><p class="currencyOfTotalIncome">EUR</p><input type="number" maxlength=11"
+                                                                                       id="totalIncomeEUR" readonly>
+        </div>
+    </div>
+    <button id="addWallet">Add wallet</button>
+    <form action="" id="createWallet">
+        <div style="background-color: rgba(255,255,255,0.4)">
+            <button class="close" id="closeCreateWallet">X</button>
+            <p class="formName">Create wallet</p>
+            <p class="walletFields">Name:</p>
+            <input type="text" id="walletName">
+            <br>
+            <p class="walletFields">Currency:</p>
+            <select name="walletCurrency" id="walletCurrency">
+                <option value="USD">USD</option>
+                <option value="BYN">BYN</option>
+                <option value="EUR">EUR</option>
+            </select>
+            <br>
+            <p class="walletFields">Sum:</p>
+            <input type="number" id="startBalance">
+            <br>
+            <button id="saveWallet">Save</button>
+            <br>
+        </div>
+    </form>
+    <form action="" id="addSum">
+        <button class="close" id="closeTopUpAmount">X</button>
+        <p>Date</p>
+        <input type="date" id="dateOfTopUp">
+        <p>Sum</p>
+        <input type="number" id="topUpAmount">
+        <button id="btnTopUpAmount">Add</button>
+    </form>
+    <table class="walletContainer"></table>
+</div>
+<div id="detailingPage">
+    <button id="deleteWallet"><img src="https://cdn-icons-png.flaticon.com/512/1345/1345823.png" alt="urn" class="urn"></button>
+    <button class="closeDetails" id="closeDetailing">X</button>
+    <table class="detailingIncomes">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Income</th>
+        </tr>
+        </thead>
+        <tbody class="tbodyForIncomes"></tbody>
+    </table>
+    <div class="agreeToDeleteWallet">
+        <p>Are you really want to delete this wallet?</p>
+        <button id="yesDeleteWallet">Yes</button>
+        <button id="notDeleteWallet">No</button>
+    </div>
+</div>
+<div id="expensesPage">
+    <h2>Expenses</h2>
+    <select name="selectedWallet" id="selectedWallet"></select>
+    <button id="addExpanses">Add expense</button>
+    <form action="" id="createExpense">
+        <button class="close" id="closeCreateExpense">X</button>
+        <div class="fieldsToPostExpenses">
+            <div class="box1">
+                <label for="dateOfExpense">Date</label>
+                <br>
+                <input type="date" id="dateOfExpense">
+            </div>
+            <div class="box2">
+                <label for="expenseSum">Sum:</label>
+                <br>
+                <input type="number" id="expenseSum">
+            </div>
+            <div class="box3">
+                <label>Category:</label>
+                <br>
+                <div class="categoriesContainer"></div>
+            </div>
+            <div class="box4">
+                <label for="comment">Comment:</label>
+                <br>
+                <input type="text" id="comment">
+            </div>
+        </div>
+        <button id="saveExpense">Save</button>
+    </form>
+    <table id="detailingExpensesContainer">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Comment</th>
+            <th>Expense</th>
+        </tr>
+        </thead>
+        <tbody class="containerForExpenses"></tbody>
+    </table>
+</div>
+
+<!--<div id="notesPage" style="background-color: #ffffff">-->
+<!--    <h2>Notes</h2>-->
+<!--    <button id="addNote">Add note</button>-->
+<!--</div>-->
+
+<div id="analyticsPage">
+    <h2 class="h2Analytic">Analytics</h2>
+    <div>
+        <div class="selection">
+            <div>
+                <p>Analytics by:</p>
+                <input type="radio" id="days" name="analyticsBy" value="days">
+                <label for="days">days</label>
+                <input type="radio" id="months" name="analyticsBy" value="months">
+                <label for="months">months</label>
+                <input type="radio" id="years" name="analyticsBy" value="years">
+                <label for="years">years</label>
+            </div>
+            <div>
+                <p>Period:</p>
+                <input type="date" id="startDate">
+                <input type="date" id="finishDate">
+            </div>
+            <div>
+                <p>Type of operation:</p>
+                <input type="radio" id="incomes" name="operationType" value="incomes">
+                <label for="incomes">incomes</label>
+                <input type="radio" id="expenses" name="operationType" value="expenses">
+                <label for="expenses">expenses</label>
+            </div>
+            <div class="inlineBox">
+                <p>Wallet:</p>
+                <select name="walletForAnalytic" id="walletForAnalytic"></select>
+            </div>
+            <button id="getAnalytics">Get analytics</button>
+        </div>
+        <div class="container"></div>
+    </div>
+</div>
+
+<script src="script/script.js"></script>
+</body>
+</html>

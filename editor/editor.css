@@ -1,0 +1,832 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@100;200&family=Raleway:wght@100&family=Source+Sans+Pro:wght@200&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#authorizationPage, #menu, #expensesPage {
+    background: linear-gradient(to right, #49c6c9, #77e8bb);
+}
+
+input, button, select {
+    font-family: 'Playfair Display', serif;
+}
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #ffffff;
+    margin: 0 0 35px;
+    padding-top: 35px;
+}
+
+.greeting {
+    text-align: center;
+    font-size: 1.6em;
+    color: #ffffff;
+    margin: 30px;
+}
+
+.authorization {
+    width: 420px;
+    height: 500px;
+    margin-top: 45px;
+    position: relative;
+    left: 50%;
+    margin-left: -210px;
+    background-color: #ffffff;
+    border: 2px solid #49c6c9;
+    box-shadow: 0 5px 10px 10px rgba(34, 60, 80, 0.2);
+}
+
+.authorization-choice {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+    font-size: 1.5em;
+}
+
+.authorization > input {
+    display: none;
+}
+
+.authorization-choice label {
+    margin: 24px 0 15px;
+}
+
+.authorization-choice label:hover {
+    cursor: pointer;
+}
+
+#singInCheck:checked ~ .registrationUnit, #singInCheck:checked ~ #btnRegistration {
+    display: none;
+}
+
+#singInCheck:checked ~ .authorization-choice > #singInLabel, #registrationCheck:checked ~ .authorization-choice > #registrationLabel {
+    color: #77e8bb;
+    border-bottom: 2px solid #77e8bb;
+    padding-bottom: 5px;
+}
+
+#registrationCheck:checked ~ .singInUnit, #registrationCheck:checked ~ #btnSingIn {
+    display: none;
+}
+
+.singInUnit, .registrationUnit {
+    margin-left: 50px;
+    font-size: 1.3em;
+}
+
+.singInUnit {
+    padding-top: 40px;
+    height: 290px;
+}
+
+.registrationUnit {
+    height: 330px;
+}
+
+.registrationUnit .email_pass {
+    margin: 13px 0;
+}
+
+.email_pass {
+    border: 2px solid #77e8bb;
+    font-size: 0.8em;
+    padding: 10px 20px;
+    margin: 20px 0;
+    width: 270px;
+    transition: border .5s;
+}
+
+.showPass, .hidePass {
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: 8px;
+    background-color: #ffffff;
+}
+
+.hidePass {
+    display: none;
+}
+
+#btnSingIn, #btnRegistration, #saveExpense {
+    font-size: 1.2em;
+    padding: 10px 35px;
+    margin: 0 auto;
+    display: block;
+    background-color: #77e8bb;
+    border: 2px solid #77e8bb;
+    border-radius: 30px;
+    transition: all .4s;
+}
+
+#btnSingIn:hover, #btnRegistration:hover, #saveExpense:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 2px solid #77e8bb;
+    color: #77e8bb;
+}
+
+.invalidData {
+    color: #fe0000;
+    display: none;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+.regAnswer {
+    width: 590px;
+    background: linear-gradient(to right, #49c6c9, #77e8bb);
+    position: absolute;
+    left: 50%;
+    top: 90px;
+    margin-left: -297px;
+    padding: 0;
+    box-shadow: 0 5px 10px 10px rgba(34, 60, 80, 0.1);
+    font-size: 1.5em;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.6s opacity, 0.6s visibility;
+}
+
+.regAnswer p {
+    margin: 0;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menuItems {
+    width: 80%;
+    list-style-type: none;
+    text-align: center;
+    margin: 0 auto;
+    padding: 23px 0;
+}
+
+.menuItems li {
+    display: inline-block;
+    padding: 0 2em;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.7em;
+}
+
+#walletsPage {
+    color: #49c6c9;
+}
+
+h2 {
+    font-size: 2.8em;
+    text-align: center;
+    padding-top: 40px;
+    margin: 0 0 40px;
+}
+
+#expensesPage {
+    min-height: calc(100vh - 40px);
+    padding-bottom: 40px;
+}
+
+#expensesPage h2 {
+    padding-top: 25px;
+    margin: 0 0 30px;
+    color: #ffffff;
+}
+
+.counter {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.wrapperTotalIncome {
+    text-align: center;
+}
+
+#totalIncomeUSD, #totalIncomeBYN, #totalIncomeEUR {
+    border: none;
+    box-shadow: 5px 5px 11px 6px rgba(34, 60, 80, 0.2);
+    width: 50%;
+    text-align: center;
+    padding: 10px 20px 20px;
+    font-size: 2.2em;
+}
+
+.currencyOfTotalIncome {
+    color: #000000;
+    font-size: 2em;
+    margin-top: 0;
+}
+
+#addWallet, #addNote, #getAnalytics {
+    font-size: 1.4em;
+    margin: 45px auto 40px;
+    display: block;
+    background: linear-gradient(to right, #49c6c9, #77e8bb);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 30px;
+    transition: all .4s;
+}
+
+#addWallet:hover, #addNote:hover, #getAnalytics:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background: linear-gradient(to right, #77e8bb, #49c6c9);
+}
+
+.formName {
+    color: #ffffff;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+#createWallet, #addSum {
+    width: 420px;
+    background: linear-gradient(to right, #49c6c9, #77e8bb);
+    position: absolute;
+    left: 50%;
+    margin-left: -230px;
+    top: 215px;
+    padding: 20px;
+    display: none;
+}
+
+#addSum {
+    width: 280px;
+    background: #77e8bb;
+    margin-left: -162px;
+    top: 215px;
+    padding-top: 0;
+    box-shadow: 0 5px 10px 10px rgba(34, 60, 80, 0.2);
+}
+
+#addSum #closeTopUpAmount {
+    left: 96%;
+    top: -3px;
+    padding: 8px;
+}
+
+#addSum p {
+    color: #ffffff;
+    font-size: 1.5em;
+    padding-left: 20px;
+    margin: 0 0 10px;
+}
+
+#topUpAmount, #dateOfTopUp {
+    border: 2px solid #49c6c9;
+    font-size: 1.2em;
+    padding: 8px 12px;
+    margin: 0 auto 20px;
+    display: block;
+    width: 77%;
+    transition: all .4s;
+}
+
+#btnTopUpAmount {
+    font-size: 1.4em;
+    color: #49c6c9;
+    padding: 3px 21px;
+    margin: 0 auto;
+    display: block;
+    background-color: #ffffff;
+    border: 2px solid #49c6c9;
+    border-radius: 30px;
+    transition: all .4s;
+}
+
+.close {
+    position: relative;
+    left: 92%;
+    top: -4px;
+    font-family: Courier New, monospace;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #ffffff;
+    border: none;
+    background-color: rgba(255, 255, 255, .01);
+    padding: 10px;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+#createExpense .close {
+    color: black;
+    left: 100%;
+    top: 0;
+}
+
+#createWallet input, #createWallet select {
+    border: none;
+    font-size: 1.2em;
+    padding: 8px 12px;
+}
+
+#createWallet input {
+    width: 47%;
+    border: 2px solid #ffffff;
+    transition: all 0.4s;
+}
+
+.walletFields {
+    display: inline-block;
+    color: white;
+    font-size: 1.5em;
+    margin-left: 40px;
+    width: 105px;
+}
+
+#saveWallet {
+    font-size: 1.4em;
+    padding: 8px 35px;
+    margin: 12px auto;
+    display: block;
+    color: #49c6c9;
+    background-color: #ffffff;
+    border: 2px solid #49c6c9;
+    border-radius: 30px;
+    transition: all .4s;
+}
+
+#saveWallet:hover {
+    background: linear-gradient(to right, #77e8bb, #49c6c9);
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+}
+
+#addExpanses {
+    font-size: 1.4em;
+    margin: 35px auto;
+    display: block;
+    background: #ffffff;
+    border: 2px solid #49c6c9;
+    border-radius: 30px;
+    padding: 10px 30px;
+    transition: all .4s;
+}
+
+#addExpanses:hover {
+    cursor: pointer;
+    background: #ffffff;
+    border: 2px solid #49c6c9;
+    transform: scale(1.1);
+}
+
+#createExpense {
+    background-color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 90px;
+    margin-left: -280px;
+    padding: 0 40px 30px;
+    box-shadow: 0 5px 10px 10px rgba(34, 60, 80, 0.2);
+    display: none;
+}
+
+
+.fieldsToPostExpenses {
+    display: grid;
+    grid-template-columns: repeat(2, 240px);
+    width: 480px;
+}
+
+.box2 {
+    margin-left: 40px;
+}
+
+.box3, .box4 {
+    grid-column: 1/4
+}
+
+.box4 {
+    margin-top: 10px;
+}
+
+.categoriesContainer {
+    border: 2px solid #ffffff;
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    margin-top: 10px;
+    transition: border 0.4s;
+}
+
+.fieldsToPostExpenses input {
+    border: 2px solid #77e8bb;
+    font-size: 1.3em;
+    padding: 6px 12px;
+    margin: 20px 0;
+    width: 170px;
+}
+
+.fieldsToPostExpenses .box2 input {
+    padding: 7px 12px;
+    transition: all 0.4s;
+}
+
+
+#createExpense .box4 input {
+    width: 93%;
+}
+
+.fieldsToPostExpenses label {
+    font-size: 1.5em;
+}
+
+#notesPage h2 {
+    color: #49c6c9;
+}
+
+.walletContainer {
+    width: 70%;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.walletContainer tr td:first-child {
+    display: none;
+}
+
+.jsWalletsName {
+    color: #49c6c9;
+    font-size: 1.7em;
+    font-weight: bold;
+    transition: all 0.4s;
+}
+
+.jsWalletsName:hover {
+    opacity: 0.8;
+    color: #77e8bb;
+}
+
+.walletContainer tr td:nth-child(2) {
+    width: 25%;
+}
+
+.walletContainer tr td:nth-child(3), .walletContainer tr td:nth-child(4) {
+    color: #000000;
+    font-size: 1.5em;
+    margin: 0;
+    width: 12%;
+}
+
+.walletContainer tr td:nth-child(4), .walletContainer tr td:nth-child(5) {
+    width: 25%;
+}
+
+.btnRefill {
+    font-size: 1.4em;
+    padding: 5px 20px;
+    margin: 8px auto;
+    border: 2px solid #49c6c9;
+    border-radius: 30px;
+    background-color: transparent;
+    color: #49c6c9;
+    transition: all 0.4s;
+}
+
+.btnRefill:hover, #btnTopUpAmount:hover {
+    cursor: pointer;
+    color: #77e8bb;
+    opacity: 0.8;
+    border: 2px solid #77e8bb;
+}
+
+
+#detailingPage .closeDetails {
+    color: #000000;
+    font-size: 1.7em;
+    font-weight: bold;
+    padding: 7px 15px;
+    background-color: #ffffff;
+    border: none;
+    right: 10px;
+    transition: all 0.4s;
+    position: absolute;
+}
+
+#detailingPage .closeDetails:hover {
+    cursor: pointer;
+    transform: scale(0.9);
+}
+
+#detailingPage #deleteWallet {
+    color: #000000;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    padding: 7px 0;
+    margin: 15px 30px;
+    transition: all 0.4s;
+}
+
+#detailingPage #deleteWallet:hover {
+    cursor: pointer;
+    transform: scale(0.9);
+}
+
+.detailingIncomes {
+    background: linear-gradient(to right, #49c6c9, #77e8bb);
+    box-shadow: 0 5px 10px 10px rgba(34, 60, 80, 0.2);
+    font-size: 1.5em;
+    color: #000000;
+    margin: 30px auto 50px;
+    text-align: center;
+    padding: 20px;
+}
+
+.detailingIncomes th {
+    width: 250px;
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+.detailingIncomes td {
+    padding: 10px;
+}
+
+.agreeToDeleteWallet {
+    border: 2px solid #77e8bb;
+    border-radius: 15px;
+    font-size: 1.4em;
+    width: 420px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    margin-left: -230px;
+    display: none;
+}
+
+.agreeToDeleteWallet button {
+    border: 2px solid #77e8bb;
+    border-radius: 15px;
+    font-size: 1em;
+    background-color: #ffffff;
+    padding: 0 20px;
+    margin: 0 10px;
+    transition: all 0.4s;
+}
+
+.agreeToDeleteWallet button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.categoriesBtn {
+    border: none;
+    background-color: transparent;
+    color: #49c6c9;
+    font-size: 1.1em;
+    margin: 10px;
+    padding: 0;
+    transition: all 0.4s;
+}
+
+.categoriesBtn:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.categoriesImg {
+    border-radius: 50%;
+    width: 70px;
+}
+
+#selectedWallet, #walletForAnalytic {
+    width: 200px;
+    background-color: #ffffff;
+    border: 2px solid #49c6c9;
+    font-size: 1.4em;
+    padding: 5px 10px;
+    margin: 0 auto;
+    display: block;
+}
+
+#detailingExpensesContainer {
+    width: 70%;
+    background-color: #ffffff;
+    margin: 0 auto;
+    font-size: 1.4em;
+    box-shadow: 0 5px 10px 10px rgba(34, 60, 80, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+#detailingExpensesContainer td, #detailingExpensesContainer th {
+    padding: 10px;
+}
+
+.highlight {
+    box-shadow: 0 5px 10px 15px rgba(118, 231, 187, 0.3)
+}
+
+#detailingExpensesContainer tr td:first-child, #detailingExpensesContainer tr th:first-child {
+    display: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#analyticsPage {
+    padding-top: 15px;
+}
+
+#analyticsPage > div {
+    display: grid;
+    grid-template-columns: 440px 1fr;
+    justify-content: space-evenly;
+}
+
+.h2Analytic {
+    display: none;
+}
+
+.selection {
+    margin: 0 0 0 50px;
+}
+
+.selection p, .selection label {
+    font-size: 1.4em;
+}
+
+.selection p {
+    font-weight: bold;
+}
+
+.selection [type='date'] {
+    border: 2px solid #49c6c9;
+    font-size: 1.3em;
+    padding: 5px 10px;
+    margin-right: 10px;
+    width: 150px;
+}
+
+.selection #walletForAnalytic {
+    width: 175px;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 30px auto;
+}
+
+.fas {
+    font-size: 1.8em;
+    color: #ffffff;
+}
+
+.burger {
+    float: left;
+    width: 80px;
+    padding: 23px 0;
+    text-align: center;
+    display: none;
+}
+
+#ch:checked ~ ul {
+    display: block;
+}
+
+.urn {
+    width: 40px;
+}
+
+@media all and (max-width: 1200px) {
+    #analyticsPage > div {
+        display: block;
+    }
+
+    .selection {
+        margin: 0 auto;
+        width: 80%;
+        display: grid;
+        grid-template-columns: 40% 60%;
+        text-align: center;
+    }
+
+    #getAnalytics {
+        grid-column: 1/3;
+    }
+
+    .selection #walletForAnalytic {
+        width: 175px;
+        margin: 0 auto;
+    }
+
+    .container {
+        width: 70%;
+    }
+}
+
+@media all and (max-width: 990px) {
+    #totalIncomeBYN, #totalIncomeUSD, #totalIncomeEUR {
+        width: 180px;
+    }
+
+    .walletContainer, #detailingExpensesContainer {
+        width: 80%;
+    }
+
+    .selection {
+        width: 95%
+    }
+
+    .container {
+        width: 80%;
+    }
+}
+
+@media all and (max-width: 810px) {
+    .counter {
+        display: block;
+    }
+
+    .walletContainer, #detailingExpensesContainer {
+        width: 90%;
+    }
+
+    .currencyOfTotalIncome {
+        display: inline-block;
+        margin-right: 30px;
+        font-size: 1.5em;
+    }
+
+    #totalIncomeBYN, #totalIncomeUSD, #totalIncomeEUR {
+        width: 180px;
+        font-size: 1.7em;
+        padding: 5px 20px 10px;
+    }
+
+    .selection {
+        width: 97%
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .burger {
+        background: linear-gradient(to right, #49c6c9, #4ecac7);
+        display: block;
+        position: fixed;
+        overflow: hidden;
+        top: 0;
+        z-index: 100;
+        width: 70px;
+    }
+
+    .menuItems {
+        display: none;
+    }
+
+    .menuItems li {
+        display: block;
+    }
+
+    .menuItems li:nth-child(2), .menuItems li:nth-child(3), .menuItems li:nth-child(4) {
+        padding-top: 5px;
+    }
+
+    h2 {
+        padding-top: 20px;
+    }
+
+    .h2Analytic {
+        display: block;
+        color: #49c6c9;
+    }
+
+    #analyticsPage {
+        padding-top: 0;
+    }
+    #detailingPage #deleteWallet{
+        margin-left: 90px;
+    }
+
+}
+
+
+
